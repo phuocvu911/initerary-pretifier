@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
 	"os"
 	"regexp"
@@ -83,14 +84,18 @@ type AirportRecord struct {
 }
 
 func parseAirportLookup(data string) (map[string]*AirportRecord, error) {
-	lines := strings.Split(strings.ReplaceAll(data, "\r\n", "\n"), "\n")
-	if len(lines) == 0 {
+	reader := csv.NewReader(strings.NewReader(data))
+
+	records, err := reader.ReadAll()
+	if err != nil {
+		return nil, fmt.Errorf("CSV parse error: %w", err)
+	}
+	if len(records) == 0 {
 		return nil, fmt.Errorf("empty file")
 	}
 
 	// Parse header row to determine column order (bonus: dynamic column order)
-	headerLine := lines[0]
-	headers := parseCSVRow(headerLine)
+	headers := records[0]
 
 	// Find required column indices
 	colIdx := make(map[string]int)
@@ -107,16 +112,7 @@ func parseAirportLookup(data string) (map[string]*AirportRecord, error) {
 
 	airports := make(map[string]*AirportRecord)
 
-	for _, line := range lines[1:] {
-		line = strings.TrimSpace(line)
-		if line == "" {
-			continue
-		}
-		fields := parseCSVRow(line)
-		if len(fields) < 6 { // We expect at least 6 columns based on requiredCols
-			return nil, fmt.Errorf("row has too few columns")
-		}
-
+	for _, fields := range records[1:] {
 		// Check for blank cells in required columns
 		for _, col := range requiredCols {
 			idx := colIdx[col]
@@ -141,33 +137,6 @@ func parseAirportLookup(data string) (map[string]*AirportRecord, error) {
 	}
 
 	return airports, nil
-}
-
-// parseCSVRow handles CSV parsing including quoted fields
-// redo it using encoding/csv package, but we need to handle the header row separately to determine column indices, so we will use csv.Reader for the whole file and then process the header row to build the column index map. This way we can handle quoted fields and commas properly without reinventing CSV parsing logic.
-func parseCSVRow(line string) []string {
-	var fields []string
-	var current strings.Builder
-	inQuotes := false
-
-	for i := 0; i < len(line); i++ {
-		ch := line[i]
-		if ch == '"' {
-			if inQuotes && i+1 < len(line) && line[i+1] == '"' {
-				current.WriteByte('"')
-				i++
-			} else {
-				inQuotes = !inQuotes
-			}
-		} else if ch == ',' && !inQuotes {
-			fields = append(fields, current.String())
-			current.Reset()
-		} else {
-			current.WriteByte(ch)
-		}
-	}
-	fields = append(fields, current.String())
-	return fields
 }
 
 // Regex patterns
@@ -397,8 +366,9 @@ func formatTime24(s string) (string, bool) {
 	return timeStr + " " + offsetStr, true
 }
 
+var excessiveNewlines = regexp.MustCompile(`\n{3,}`)
+
 func trimExcessiveBlankLines(s string) string {
 	// Replace more than 2 consecutive newlines with exactly 2
-	re := regexp.MustCompile(`\n{3,}`)
-	return re.ReplaceAllString(s, "\n\n")
+	return excessiveNewlines.ReplaceAllString(s, "\n\n")
 }
