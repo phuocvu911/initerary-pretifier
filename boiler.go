@@ -113,7 +113,7 @@ func parseAirportLookup(data string) (map[string]*AirportRecord, error) {
 			continue
 		}
 		fields := parseCSVRow(line)
-		if len(fields) <= colIdx["coordinates"] {
+		if len(fields) <= 5 { // We expect at least 6 columns based on requiredCols
 			return nil, fmt.Errorf("row has too few columns")
 		}
 
@@ -144,6 +144,7 @@ func parseAirportLookup(data string) (map[string]*AirportRecord, error) {
 }
 
 // parseCSVRow handles CSV parsing including quoted fields
+// redo it using encoding/csv package, but we need to handle the header row separately to determine column indices, so we will use csv.Reader for the whole file and then process the header row to build the column index map. This way we can handle quoted fields and commas properly without reinventing CSV parsing logic.
 func parseCSVRow(line string) []string {
 	var fields []string
 	var current strings.Builder
