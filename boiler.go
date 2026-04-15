@@ -113,7 +113,7 @@ func parseAirportLookup(data string) (map[string]*AirportRecord, error) {
 			continue
 		}
 		fields := parseCSVRow(line)
-		if len(fields) <= 5 { // We expect at least 6 columns based on requiredCols
+		if len(fields) < 6 { // We expect at least 6 columns based on requiredCols
 			return nil, fmt.Errorf("row has too few columns")
 		}
 
