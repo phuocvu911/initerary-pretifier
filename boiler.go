@@ -12,26 +12,16 @@ import (
 func main() {
 	args := os.Args[1:]
 
-	// Handle -h flag
-	if len(args) == 1 && args[0] == "-h" {
-		fmt.Println(usage)
-		return
-	}
-
-	// Check for optional --color flag
 	colorOutput := false
-	filtered := args[:0]
+	argCount := 0
 	for _, a := range args {
-		if a == "--color" {
+		if a == "--color" { //special flag for formatting case
 			colorOutput = true
 		} else {
-			filtered = append(filtered, a)
+			argCount++
 		}
 	}
-	args = filtered
-
-	// Validate argument count
-	if len(args) != 3 {
+	if argCount != 3 || args[0] == "-h" {
 		fmt.Println(usage)
 		return
 	}
