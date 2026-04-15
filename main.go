@@ -36,4 +36,8 @@ func main() {
 	if err != nil {
 		fmt.Println("Airport lookup not found")
 	}
+
+	//lookup malform
+
+	//writefile
 }
