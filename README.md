@@ -13,9 +13,9 @@ Anywhere Holidays back-office administrators receive raw flight itineraries cont
 ## Installation
 
 ```bash
-git clone <repository-url>
-cd itinerary-prettifier
-go build -o itinerary-prettifier .
+git clone https://gitea.kood.tech/hoangphuocvu/prettifier.git
+cd prettifier
+go build -o prettifier .
 ```
 
 Or run directly without building:
@@ -37,7 +37,7 @@ go run . <input> <output> <airport-lookup> [--color]
 | `input` | Path to the raw itinerary text file |
 | `output` | Path where the prettified itinerary will be written |
 | `airport-lookup` | Path to the airport codes CSV file |
-| `--color` | Optional. Print colour-highlighted output to stdout in addition to writing the file |
+| `--color` | Bonus Feature. Print colour-highlighted output to stdout in addition to writing the file |
 
 **Help flag:**
 
@@ -134,6 +134,10 @@ Prefix any airport code with `*` to get the city/municipality name instead of th
 ### Dynamic column order
 
 The airport lookup CSV columns can appear in any order. The tool reads the header row at runtime to determine column positions, so reordered CSVs work without any code changes.
+
+### Extra columns tolerance
+
+The lookup CSV may contain more columns than the six required ones. Blank cells in those extra columns are silently ignored — only the required columns (`name`, `iso_country`, `municipality`, `icao_code`, `iata_code`, `coordinates`) are checked for blank values. This means real-world CSV exports with additional fields like `type`, `elevation_ft`, etc. work out of the box, even if some of those extra fields are empty.
 
 ## Examples
 
