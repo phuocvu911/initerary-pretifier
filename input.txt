@@ -1,0 +1,31 @@
+PASSENGER ITINERARY
+===================
+ 
+Booking Reference: AH-29471
+ 
+Passenger: John Smith
+ 
+Flight 1
+Departure: ##KLAX - T12(2007-04-05T09:30-07:00)
+Arrival: ##EGLL - T12(2007-04-06T06:15+01:00)
+Date: D(2007-04-05T09:30-07:00)
+ 
+Flight 2
+Departure: #LHR - T24(2007-04-10T14:45+01:00)
+Arrival: #CDG - T24(2007-04-10T17:05+02:00)
+Date: D(2007-04-10T14:45+01:00)
+ 
+ 
+ 
+Departing from *##KLAX
+ 
+Note: Please arrive at *#LHR at least 2 hours before departure.
+Destination city: *#CDG
+ 
+Zulu time test: T24(2007-04-05T12:30Z)
+ 
+Malformed date: T13(2007-04-05T12:30-02:00)
+Malformed offset: T12(2007-04-05T12:30-2:00)
+ 
+Unknown code: #XYZ
+Unknown ICAO: ##XXXX
