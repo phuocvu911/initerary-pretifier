@@ -28,13 +28,22 @@ func main() {
 
 	data, err := os.ReadFile(inputPath)
 	if err != nil {
-		fmt.Println("Input not found")
+		if os.IsNotExist(err) {
+			fmt.Println("Input not found")
+		} else {
+			fmt.Println(err)
+		}
 		return
 	}
 
 	lookup, err := os.ReadFile(lookupFile)
 	if err != nil {
-		fmt.Println("Airport lookup not found")
+		if os.IsNotExist(err) {
+			fmt.Println("Airport lookup not found")
+		} else {
+			fmt.Println(err)
+		}
+		return
 	}
 
 	//lookup malform
