@@ -37,16 +37,12 @@ func main() {
 		return
 	}
 
-	// Load airport lookup
-	lookupData, err := os.ReadFile(lookupPath)
-	if err != nil {
-		fmt.Println("Airport lookup not found")
-		return
-	}
+	// Check lookup file exist and Load airport lookup
 
-	airports, err := parseAirportLookup(string(lookupData))
+
+	airports, err := LoadAirportLookup(lookupPath)
 	if err != nil {
-		fmt.Println("Airport lookup malformed")
+		fmt.Println(err)
 		return
 	}
 
