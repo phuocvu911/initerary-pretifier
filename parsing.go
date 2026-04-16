@@ -2,10 +2,12 @@ package main
 
 import "errors"
 import "encoding/csv"
+import "strings"
+import m "pretifier/model"
 
 var malform = errors.New("Airport lookup malformed")
-
-func LoadAirportLookup(path string) (map[string]*AirportRecord, error){
+// choose a map to ptr to lower the memory usage.
+func LoadAirportLookup(path string) (map[string]*m.AirportRecord, error){
 	file, err := os.Open(path)
 	if err != nil{
 		if os.IsNotExist(err){
@@ -28,5 +30,35 @@ func LoadAirportLookup(path string) (map[string]*AirportRecord, error){
 	//dynamic column order.
 	colIndex := make(map[string]int)
 	requiredCols := []string{"name", "iso_country", "municipality", "icao_code", "iata_code","coordinates"}
-	for
+	for i, h := range header{
+		colIndex[strings.TrimSpace(strings.ToLower(h))] = i
+	}
+
+	for _, col := range requiredCols{
+		if _, ok := colIndex[col]; !ok{
+			return nil, malform //missing required column, exit early
+		}
+	}
+
+	airports := make(map[string]*m.AirportRecord)
+	for _, row := range rows[1:]{
+		//check blank cell
+		for _, col := range requiredCols{
+			idx:= colIndex[col]
+			if idx >= len(row) || strings.TrimSpace(row[idx]) == ""{
+				return nil, malform
+			}
+		}
+
+		rec := &m.AirportRecord{
+			Name: strings.TrimSpace(row[colIndex["name"]]),
+			Municipality: strings.TrimSpce(row[colIndex["municipality"]]),
+			ICAOCode: strings.TrimSpce(row[colIndex["icao_code"]]),
+			IATACode: strings.TrimSpce(row[colIndex["iata_code"]]),
+		}
+
+		airports[rec.ICAOCode] = rec
+		airports[rec.IATACode] = rec
+	}
+	return airports, nil
 }

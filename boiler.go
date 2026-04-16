@@ -63,12 +63,7 @@ func main() {
 }
 
 // AirportRecord holds parsed airport data
-type AirportRecord struct {
-	Name         string
-	Municipality string
-	ICAOCode     string
-	IATACode     string
-}
+
 
 func parseAirportLookup(data string) (map[string]*AirportRecord, error) {
 	reader := csv.NewReader(strings.NewReader(data))
