@@ -11,7 +11,6 @@ import (
 
 var malform = errors.New("Airport lookup malformed")
 
-// choose a map to ptr to lower the memory usage.
 func LoadAirportLookup(path string) (map[string]m.AirportRecord, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -67,3 +66,5 @@ func LoadAirportLookup(path string) (map[string]m.AirportRecord, error) {
 	}
 	return airports, nil
 }
+
+func ParseISO8601(s string)
