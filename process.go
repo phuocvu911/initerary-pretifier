@@ -9,6 +9,7 @@ import (
 var (
 	icaoPattern = regexp.MustCompile(`(\*?)##([A-Z]{4})`)
 	iataPattern = regexp.MustCompile(`(\*?)##([A-Z]{3})`)
+	datePattern = regexp.MustCompile(`D\(([^)]+)\)`)
 )
 
 func ProcessIntinerary(input string, airports map[string]m.AirportRecord) (string, string) {
@@ -72,5 +73,11 @@ func ProcessIntinerary(input string, airports map[string]m.AirportRecord) (strin
 			return colorGreen + colorBold + rec.Name + colorReset
 		}
 		return match
+	})
+
+	//replace date
+	res = datePattern.ReplaceAllStringFunc(res, func(match string) string {
+		m := datePattern.FindStringSubmatch(match)
+
 	})
 }
