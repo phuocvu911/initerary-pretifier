@@ -49,11 +49,5 @@ func main() {
 	//lookup malform
 
 	//writefile
-	//output, err := os.Create(outputPath)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//defer output.Close()
 
 }
