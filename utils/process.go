@@ -174,5 +174,5 @@ func formatT24(dateStr string) (string, string, bool) {
 var toomuchnewlinePattern = regexp.MustCompile(`(\n[ \t]*){3,}`)
 
 func cleanNewlines(s string) string {
-	return toomuchnewlinePattern.ReplaceAllString(s, "\n")
+	return toomuchnewlinePattern.ReplaceAllString(s, "\n\n")
 }
