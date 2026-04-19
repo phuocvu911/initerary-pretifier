@@ -1,6 +1,6 @@
-package main
+package utils
 
-const usage = "itinerary usage:\ngo run . ./input.txt ./output.txt ./airport-lookup.csv"
+const Usage = "itinerary usage:\ngo run . ./input.txt ./output.txt ./airport-lookup.csv"
 
 // color settings for formatting output
 const (

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	u "pretifier/utils"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 		}
 	}
 	if argCount != 3 || args[0] == "-h" {
-		fmt.Println(usage)
+		fmt.Println(u.Usage)
 		return
 	}
 
