@@ -17,8 +17,8 @@ var (
 func ProcessIntinerary(input string, airports map[string]m.AirportRecord) (string, string) {
 	input = strings.ReplaceAll(input, "\v", "\n")
 	input = strings.ReplaceAll(input, "\f", "\n")
-	input = strings.ReplaceAll(input, "\r", "\n")
 	input = strings.ReplaceAll(input, "\r\n", "\n")
+	input = strings.ReplaceAll(input, "\r", "\n")
 
 	res := input
 	resColor := input
@@ -169,7 +169,9 @@ func formatT24(dateStr string) (string, string, bool) {
 	return t.Format("15:04 "), tz, true
 }
 
-var toomuchnewlinePattern = regexp.MustCompile(`\n{3,}`)
+// replace too much newline, can be new line and with space or tab in between, because we
+// didn't trim the input string with space or tab at first
+var toomuchnewlinePattern = regexp.MustCompile(`(\n[ \t]*){3,}`)
 
 func cleanNewlines(s string) string {
 	return toomuchnewlinePattern.ReplaceAllString(s, "\n")
