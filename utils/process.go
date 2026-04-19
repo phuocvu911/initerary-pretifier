@@ -8,7 +8,7 @@ import (
 
 var (
 	icaoPattern = regexp.MustCompile(`(\*?)##([A-Z]{4})`)
-	iataPattern = regexp.MustCompile(`(\*?)##([A-Z]{3})`)
+	iataPattern = regexp.MustCompile(`(\*?)#([A-Z]{3})`)
 	datePattern = regexp.MustCompile(`D\(([^)]+)\)`)
 	t12Pattern  = regexp.MustCompile(`T12\(([^)]+)\)`)
 	t24Pattern  = regexp.MustCompile(`T24\(([^)]+)\)`)
@@ -26,53 +26,61 @@ func ProcessIntinerary(input string, airports map[string]m.AirportRecord) (strin
 	//replace ICAO code first
 	res = icaoPattern.ReplaceAllStringFunc(res, func(match string) string {
 		m := icaoPattern.FindStringSubmatch(match)
-		isCity := m[1] == "*"
-		code := m[2]
-		if rec, ok := airports[code]; ok {
-			if isCity {
-				return rec.Municipality
+		if len(m) > 0 {
+			isCity := m[1] == "*"
+			code := m[2]
+			if rec, ok := airports[code]; ok {
+				if isCity {
+					return rec.Municipality
+				}
+				return rec.Name
 			}
-			return rec.Name
 		}
 		return match
 	})
 
 	resColor = icaoPattern.ReplaceAllStringFunc(resColor, func(match string) string {
 		m := icaoPattern.FindStringSubmatch(match)
-		isCity := m[1] == "*"
-		code := m[2]
-		if rec, ok := airports[code]; ok {
-			if isCity {
-				return colorMagenta + colorBold + rec.Municipality + colorReset
+		if len(m) > 0 {
+			isCity := m[1] == "*"
+			code := m[2]
+			if rec, ok := airports[code]; ok {
+				if isCity {
+					return colorMagenta + colorBold + rec.Municipality + colorReset
+				}
+				return colorGreen + colorBold + rec.Name + colorReset
 			}
-			return colorGreen + colorBold + rec.Name + colorReset
 		}
 		return match
 	})
 
 	//replace IATA code
 	res = iataPattern.ReplaceAllStringFunc(res, func(match string) string {
-		m := icaoPattern.FindStringSubmatch(match)
-		isCity := m[1] == "*"
-		code := m[2]
-		if rec, ok := airports[code]; ok {
-			if isCity {
-				return rec.Municipality
+		m := iataPattern.FindStringSubmatch(match)
+		if len(m) > 0 {
+			isCity := m[1] == "*"
+			code := m[2]
+			if rec, ok := airports[code]; ok {
+				if isCity {
+					return rec.Municipality
+				}
+				return rec.Name
 			}
-			return rec.Name
 		}
 		return match
 	})
 
 	resColor = iataPattern.ReplaceAllStringFunc(resColor, func(match string) string {
 		m := iataPattern.FindStringSubmatch(match)
-		isCity := m[1] == "*"
-		code := m[2]
-		if rec, ok := airports[code]; ok {
-			if isCity {
-				return colorMagenta + colorBold + rec.Municipality + colorReset
+		if len(m) > 0 {
+			isCity := m[1] == "*"
+			code := m[2]
+			if rec, ok := airports[code]; ok {
+				if isCity {
+					return colorMagenta + colorBold + rec.Municipality + colorReset
+				}
+				return colorGreen + colorBold + rec.Name + colorReset
 			}
-			return colorGreen + colorBold + rec.Name + colorReset
 		}
 		return match
 	})
@@ -164,5 +172,5 @@ func formatT24(dateStr string) (string, string, bool) {
 var toomuchnewlinePattern = regexp.MustCompile(`\n{3,}`)
 
 func cleanNewlines(s string) string {
-	return toomuchnewlinePattern.ReplaceAllString(s, "\n\n")
+	return toomuchnewlinePattern.ReplaceAllString(s, "\n")
 }
