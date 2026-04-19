@@ -8,11 +8,11 @@ import (
 func main() {
 	args := os.Args[1:]
 
-	isColor := false
+	colorOutput := false
 	argCount := 0
 	for _, a := range args {
 		if a == "--color" { //special flag for formatting case
-			isColor = true
+			colorOutput = true
 		} else {
 			argCount++
 		}
@@ -24,9 +24,10 @@ func main() {
 
 	inputPath := args[0]
 	outputPath := args[1]
-	lookupFile := args[2]
+	lookupPath := args[2]
 
-	data, err := os.ReadFile(inputPath)
+	// Check input exists
+	inputData, err := os.ReadFile(inputPath)
 	if err != nil {
 		if os.IsNotExist(err) {
 			fmt.Println("Input not found")
@@ -36,18 +37,26 @@ func main() {
 		return
 	}
 
-	lookup, err := os.ReadFile(lookupFile)
+	// Check lookup file exist and Load airport lookup
+
+	airports, err := LoadAirportLookup(lookupPath)
 	if err != nil {
-		if os.IsNotExist(err) {
-			fmt.Println("Airport lookup not found")
-		} else {
-			fmt.Println(err)
-		}
+		fmt.Println(err)
 		return
 	}
 
-	//lookup malform
+	// Process the itinerary
+	result, colorResult := processItinerary(string(inputData), airports)
 
-	//writefile
+	// Write output, even though writefile can stop mid-op, our test case guard that to return when airport lookup malformed and return earlier. so using os.WriteFile here is fine
+	//filemode: owner, group , others. 4: read, 2:write, 1:execute. Since it just a textfile, no need to execute permission.
+	if err := os.WriteFile(outputPath, []byte(result), 0644); err != nil {
+		fmt.Println("Output path invalid or you dont have permission to write.")
+		return
+	}
 
+	// Bonus: print colored output to stdout (only if --color flag is set)
+	if colorOutput {
+		fmt.Print(colorResult)
+	}
 }
