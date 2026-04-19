@@ -38,7 +38,6 @@ func main() {
 	}
 
 	// Check lookup file exist and Load airport lookup
-
 	airports, err := LoadAirportLookup(lookupPath)
 	if err != nil {
 		fmt.Println(err)
