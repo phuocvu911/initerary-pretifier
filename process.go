@@ -15,10 +15,10 @@ var (
 )
 
 func ProcessIntinerary(input string, airports map[string]m.AirportRecord) (string, string) {
-	input = strings.ReplaceAll("\v", "\n")
-	input = strings.ReplaceAll("\f", "\n")
-	input = strings.ReplaceAll("\r", "\n")
-	input = strings.ReplaceAll("\r\n", "\n")
+	input = strings.ReplaceAll(input, "\v", "\n")
+	input = strings.ReplaceAll(input, "\f", "\n")
+	input = strings.ReplaceAll(input, "\r", "\n")
+	input = strings.ReplaceAll(input, "\r\n", "\n")
 
 	res := input
 	resColor := input

@@ -46,9 +46,9 @@ func main() {
 	}
 
 	// Process the itinerary
-	result, colorResult := processItinerary(string(inputData), airports)
+	result, colorResult := ProcessIntinerary(string(inputData), airports)
 
-	// Write output, even though writefile can stop mid-op, our test case guard that to return when airport lookup malformed and return earlier. so using os.WriteFile here is fine
+	// Write output, even though writefile can stop mid-op, our test case guard the program to return when airport lookup malformed or input file missing and return earlier. so using os.WriteFile here is fine
 	//filemode: owner, group , others. 4: read, 2:write, 1:execute. Since it just a textfile, no need to execute permission.
 	if err := os.WriteFile(outputPath, []byte(result), 0644); err != nil {
 		fmt.Println("Output path invalid or you dont have permission to write.")
