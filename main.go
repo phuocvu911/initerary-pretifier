@@ -39,14 +39,14 @@ func main() {
 	}
 
 	// Check lookup file exist and Load airport lookup
-	airports, err := LoadAirportLookup(lookupPath)
+	airports, err := u.LoadAirportLookup(lookupPath)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	// Process the itinerary
-	result, colorResult := ProcessIntinerary(string(inputData), airports)
+	result, colorResult := u.ProcessIntinerary(string(inputData), airports)
 
 	// Write output, even though writefile can stop mid-op, our test case guard the program to return when airport lookup malformed or input file missing and return earlier. so using os.WriteFile here is fine
 	//filemode: owner, group , others. 4: read, 2:write, 1:execute. Since it just a textfile, no need to execute permission.
