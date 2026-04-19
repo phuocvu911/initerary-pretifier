@@ -8,7 +8,9 @@ Anywhere Holidays back-office administrators receive raw flight itineraries cont
 
 ## Requirements
 
-- Go 1.18 or later
+- Go 1.25.0
+- airport-lookup.csv file
+- input file (in the form of flight itinerary)
 
 ## Installation
 
@@ -55,8 +57,7 @@ The tool replaces encoded airport codes with human-readable names:
 |---|---|
 | `##EGLL` | `London Heathrow Airport` (ICAO 4-letter code) |
 | `#LAX` | `Los Angeles International Airport` (IATA 3-letter code) |
-| `*##EGLL` | `London` (city name instead of airport name) |
-| `*#LAX` | `Los Angeles` (city name instead of airport name) |
+
 
 If a code is not found in the lookup CSV, it is left unchanged.
 
@@ -126,10 +127,10 @@ By default the program produces no stdout output, in line with the spec. The `--
 
 Prefix any airport code with `*` to get the city/municipality name instead of the airport name:
 
-```
-*#LHR   → London
-*##EGLL → London
-```
+| Input | Output |
+|---|---|
+| `*##EGLL` | `London` (city name instead of airport name) |
+| `*#LAX` | `Los Angeles` (city name instead of airport name) |
 
 ### Dynamic column order
 
