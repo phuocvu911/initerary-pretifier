@@ -1,0 +1,50 @@
+municipality,iso_country,icao_code,name,iata_code,coordinates,type,elevation_ft
+Honiara,SB,AGGH,Honiara International Airport,HIR,"160.05499267578, -9.4280004501343",small_airport,236
+Aba,CN,ZUHY,Hongyuan Airport,AHJ,"102.35224, 32.53154",medium_airport,1280
+Yaren District,NR,ANYN,Nauru International Airport,INU,"166.919006, -0.547458",medium_airport,1217
+Bayanhot,CN,ZBAL,Alxa Left Banner Bayanhot Airport,AXF,"105.58858, 38.74831",small_airport,1147
+Buka Island,PG,AYBK,Buka Airport,BUA,"154.67300415039062, -5.4223198890686035",small_airport,1021
+Kundiawa,PG,AYCH,Chimbu Airport,CMU,"144.9709930419922, -6.024290084838867",medium_airport,3071
+Daru,PG,AYDU,Daru Airport,DAU,"143.207992554, -9.08675956726",small_airport,596
+Goronka,PG,AYGA,Goroka Airport,GKA,"145.391998291, -6.081689834590001",medium_airport,4402
+Gurney,PG,AYGN,Gurney Airport,GUR,"150.333999634, -10.3114995956",medium_airport,2627
+Popondetta,PG,AYGR,Girua Airport,PNP,"148.309005737, -8.80453968048",medium_airport,3726
+Hoskins,PG,AYHK,Kimbe Airport,HKN,"150.40499877929688, -5.462170124053955",medium_airport,1597
+Kerema,PG,AYKM,Kerema Airport,KMA,"145.770996094, -7.96361017227",medium_airport,798
+Kavieng,PG,AYKV,Kavieng Airport,KVG,"150.807998657, -2.57940006256",medium_airport,3643
+Madang,PG,AYMD,Madang Airport,MAG,"145.789001465, -5.20707988739",medium_airport,2285
+Mount Hagen,PG,AYMH,Mount Hagen Kagamuga Airport,HGU,"144.29600524902344, -5.826789855957031",large_airport,4934
+Mendi,PG,AYMN,Mendi Airport,MDU,"143.656998, -6.14774",medium_airport,4571
+Manus Island,PG,AYMO,Momote Airport,MAS,"147.423996, -2.06189",large_airport,586
+Lae,PG,AYNZ,Nadzab Airport,LAE,"146.725977, -6.569803",small_airport,4317
+Port Moresby,PG,AYPY,Port Moresby Jacksons International Airport,POM,"147.22000122070312, -9.443380355834961",small_airport,504
+Tokua,PG,AYTK,Tokua Airport,RAB,"152.380004883, -4.34045982361",small_airport,4341
+Vanimo,PG,AYVN,Vanimo Airport,VAI,"141.3028, -2.6926",large_airport,1590
+Wewak,PG,AYWK,Wewak International Airport,WWK,"143.669006348, -3.58383011818",medium_airport,2616
+Baku,AZ,UBTT,Zabrat Airport,ZXT,"49.9768066406, 40.4955422161",small_airport,3352
+Yambol,BG,LBIA,Bezmer Air Base,JAM,"26.3521995544, 42.4548988342",small_airport,4296
+Aasiaat,GL,BGAA,Aasiaat Airport,JEG,"-52.7846984863, 68.7218017578",small_airport,703
+Narsarsuaq,GL,BGBW,Narsarsuaq Airport,UAK,"-45.4259986877, 61.1604995728",medium_airport,1756
+Nuuk,GL,BGGH,Godthaab / Nuuk Airport,GOH,"-51.6781005859, 64.19090271",small_airport,4771
+Kangerlussuaq,GL,BGSF,Kangerlussuaq Airport,SFJ,"-50.7116031647, 67.0122218992",medium_airport,3871
+Sisimiut,GL,BGSS,Sisimiut Airport,JHS,"-53.729301, 66.951302",medium_airport,267
+Thule,GL,BGTL,Thule Air Base,THU,"-68.7032012939, 76.5311965942",small_airport,820
+Akureyri,IS,BIAR,Akureyri Airport,AEY,"-18.07270050048828, 65.66000366210938",large_airport,3299
+Egilssta����ir,IS,BIEG,Egilssta����ir Airport,EGS,"-14.401399612426758, 65.2833023071289",small_airport,4593
+H����fn,IS,BIHN,Hornafj����r����ur Airport,HFN,"-15.2272, 64.295601",medium_airport,1777
+H����sav����k,IS,BIHU,H����sav����k Airport,HZK,"-17.426001, 65.952301",small_airport,2665
+����safj����r����ur,IS,BIIS,����safj����r����ur Airport,IFJ,"-23.135299682617188, 66.05809783935547",large_airport,3761
+Reykjav����k,IS,BIKF,Keflavik International Airport,KEF,"-22.6056, 63.985001",medium_airport,2037
+Reykjavik,IS,BIRK,Reykjavik Airport,RKV,"-21.9405994415, 64.1299972534",medium_airport,67
+Siglufj����r����ur,IS,BISI,Siglufj����r����ur Airport,SIJ,"-18.9167, 66.133301",medium_airport,4030
+Vestmannaeyjar,IS,BIVM,Vestmannaeyjar Airport,VEY,"-20.278900146484375, 63.42430114746094",medium_airport,2610
+Prishtina,XK,BKPR,Pri����tina International Airport,PRN,"21.035801, 42.5728",medium_airport,3903
+San Pedro,BZ,MZSP,San Pedro Airport,SPR,"-87.9711, 17.9139",small_airport,651
+Yinchuan,CN,ZLIC,Yinchuan Hedong International Airport,INC,"106.393214, 38.322758",medium_airport,2626
+Yantai,CN,ZSYT,Duplicate --Yantai Penglai International Airport,YNT,"120.9872, 37.65722",large_airport,3548
+Yuanmou,CN,ZPYM,Yuanmou Air Base,YUA,"101.88200378418, 25.737499237061",large_airport,812
+Zhangjiakou,CN,ZBZJ,Zhangjiakou Ningyuan Airport,ZQZ,"114.930000305, 40.7386016846",large_airport,1248
+Lincang,CN,ZPLC,Lintsang Airfield,LNJ,"100.025001526, 23.738100051900002",small_airport,2672
+Xigaz����,CN,ZURK,Shigatse Air Base,RKZ,"89.311401, 29.3519",medium_airport,1783
+Panzhihua,CN,ZUZH,Bao'anying Airport,PZI,"101.79852, 26.54",small_airport,179
+Foshan,CN,ZGFS,Foshan Shadi Airport,FUO,"113.069999695, 23.083299636799996",medium_airport,3617
