@@ -140,6 +140,9 @@ The airport lookup CSV columns can appear in any order. The tool reads the heade
 
 The lookup CSV may contain more columns than the six required ones. Blank cells in those extra columns are silently ignored — only the required columns (`name`, `iso_country`, `municipality`, `icao_code`, `iata_code`, `coordinates`) are checked for blank values. This means real-world CSV exports with additional fields like `type`, `elevation_ft`, etc. work out of the box, even if some of those extra fields are empty (does not applicable if extra column fall in between required columns).
 
+## Extra tool to shuffle columns
+Based on provided lookup CSV, the tool locating in ./tool can be used and configured to generate dynamic column order or add extra columns to mimic the real world data.
+
 ## Examples
 
 **Input:**
