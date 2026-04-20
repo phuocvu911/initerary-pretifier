@@ -140,23 +140,12 @@ The airport lookup CSV columns can appear in any order. The tool reads the heade
 
 The lookup CSV may contain more columns than the six required ones. Blank cells in those extra columns are silently ignored — only the required columns (`name`, `iso_country`, `municipality`, `icao_code`, `iata_code`, `coordinates`) are checked for blank values. This means real-world CSV exports with additional fields like `type`, `elevation_ft`, etc. work out of the box, even if some of those extra fields are empty (does not applicable if extra column fall in between required columns).
 
-## Extra tool to shuffle columns
-Based on provided lookup CSV, the tool locating in ./tool can be used and configured to generate dynamic column order or add extra columns to mimic the real world data.
+### Extra tool to shuffle columns
+Based on provided lookup CSV, the tools locating in `./tool` can be used and configured to generate dynamic column order or add extra columns to mimic the real world data. Run it from main working directory, new file will be spawned in `./pretifier`:
 
-## Examples
-
-**Input:**
-```
-Departure: ##KLAX - T12(2007-04-05T09:30-07:00)
-Arrival: ##EGLL - T12(2007-04-06T06:15+01:00)
-Departing from *##KLAX
-```
-
-**Output:**
-```
-Departure: Los Angeles International Airport - 9:30AM (-07:00)
-Arrival: London Heathrow Airport - 6:15AM (+01:00)
-Departing from Los Angeles
+```bash
+go run ./tool/shufling
+go run ./tool/extra
 ```
 
 ## Design Notes

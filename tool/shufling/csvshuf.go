@@ -3,10 +3,9 @@ package main
 import (
 	"encoding/csv"
 	"log"
+	"math/rand/v2" // use v2 for Shuffle, v1 is deprecated
 	"os"
 )
-
-var p = []int{2, 4, 1, 5, 3, 0}
 
 func main() {
 	file, err := os.Open("airport-lookup.csv")
@@ -20,6 +19,15 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	//find number of columns, and create a permutation of column indices
+	numCols := len(records[0])
+	p := make([]int, numCols)
+	for i := range numCols {
+		p[i] = i
+	}
+	rand.Shuffle(len(p), func(i, j int) {
+		p[i], p[j] = p[j], p[i]
+	})
 
 	for i, row := range records {
 		if len(row) < len(p) {
