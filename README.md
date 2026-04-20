@@ -17,10 +17,9 @@ Anywhere Holidays back-office administrators receive raw flight itineraries cont
 ```bash
 git clone https://gitea.kood.tech/hoangphuocvu/prettifier.git
 cd prettifier
-go build -o prettifier .
 ```
 
-Or run directly without building:
+Run the program:
 
 ```bash
 go run . ./input.txt ./output.txt ./airport-lookup.csv
