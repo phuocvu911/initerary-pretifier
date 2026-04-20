@@ -33,13 +33,13 @@ func main() {
 		records[i] = newRow
 	}
 
-	out, err := os.Create("airport-dynamic.csv")
+	desfile, err := os.Create("airport-dynamic.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer out.Close()
+	defer desfile.Close()
 
-	writer := csv.NewWriter(out)
+	writer := csv.NewWriter(desfile)
 	defer writer.Flush()
 
 	if err := writer.WriteAll(records); err != nil {
