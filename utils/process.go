@@ -17,7 +17,6 @@ var (
 
 func ProcessIntinerary(input string, airports map[string]m.AirportRecord) (string, string) {
 	input = escapePattern.ReplaceAllString(input, "\n")
-
 	input = strings.ReplaceAll(input, "\r\n", "\n")
 
 	res := input
