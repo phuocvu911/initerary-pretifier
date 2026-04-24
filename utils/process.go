@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	icaoPattern = regexp.MustCompile(`(\*?)##([A-Z]{4})`)
-	iataPattern = regexp.MustCompile(`(\*?)#([A-Z]{3})`)
+	icaoPattern = regexp.MustCompile(`(\*?)##([A-Z]{4})\b`)
+	iataPattern = regexp.MustCompile(`(\*?)#([A-Z]{3})\b`)
 	datePattern = regexp.MustCompile(`D\(([^)]+)\)`)
 	t12Pattern  = regexp.MustCompile(`T12\(([^)]+)\)`)
 	t24Pattern  = regexp.MustCompile(`T24\(([^)]+)\)`)
