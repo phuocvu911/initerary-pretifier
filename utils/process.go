@@ -7,18 +7,18 @@ import (
 )
 
 var (
-	icaoPattern = regexp.MustCompile(`(\*?)##([A-Z]{4})\b`)
-	iataPattern = regexp.MustCompile(`(\*?)#([A-Z]{3})\b`)
-	datePattern = regexp.MustCompile(`D\(([^)]+)\)`)
-	t12Pattern  = regexp.MustCompile(`T12\(([^)]+)\)`)
-	t24Pattern  = regexp.MustCompile(`T24\(([^)]+)\)`)
+	icaoPattern   = regexp.MustCompile(`(\*?)##([A-Z]{4})\b`)
+	iataPattern   = regexp.MustCompile(`(\*?)#([A-Z]{3})\b`)
+	datePattern   = regexp.MustCompile(`D\(([^)]+)\)`)
+	t12Pattern    = regexp.MustCompile(`T12\(([^)]+)\)`)
+	t24Pattern    = regexp.MustCompile(`T24\(([^)]+)\)`)
+	escapePattern = regexp.MustCompile(`[\r\t\f\v][ ]*`)
 )
 
 func ProcessIntinerary(input string, airports map[string]m.AirportRecord) (string, string) {
-	input = strings.ReplaceAll(input, "\v", "\n")
-	input = strings.ReplaceAll(input, "\f", "\n")
+	input = escapePattern.ReplaceAllString(input, "\n")
+
 	input = strings.ReplaceAll(input, "\r\n", "\n")
-	input = strings.ReplaceAll(input, "\r", "\n")
 
 	res := input
 	resColor := input
