@@ -59,12 +59,13 @@ func LoadAirportLookup(path string) (map[string]m.AirportRecord, error) {
 		rec := m.AirportRecord{
 			Name:         strings.TrimSpace(row[colIndex["name"]]),
 			Municipality: strings.TrimSpace(row[colIndex["municipality"]]),
-			ICAOCode:     strings.TrimSpace(row[colIndex["icao_code"]]),
-			IATACode:     strings.TrimSpace(row[colIndex["iata_code"]]),
 		}
 
-		airports[rec.ICAOCode] = rec
-		airports[rec.IATACode] = rec
+		ICAOCode := strings.TrimSpace(row[colIndex["icao_code"]])
+		IATACode := strings.TrimSpace(row[colIndex["iata_code"]])
+
+		airports[ICAOCode] = rec
+		airports[IATACode] = rec
 	}
 	return airports, nil
 }

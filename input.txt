@@ -30,7 +30,7 @@ Zulu time test: T24(2007-04-05T12:30Z)
 Malformed date: T13(2007-04-05T12:30-02:00)
 Malformed offset: T12(2007-04-05T12:30-2:00)
 
-Unknown code: #XYZ
+Unknown IATA: #XYZ
 Unknown ICAO: ##XXXX
 
 1. Some lines #LAX
