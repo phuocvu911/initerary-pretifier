@@ -74,9 +74,7 @@ var tzPattern = regexp.MustCompile(`\b([+-])(\d{2}):?(\d{2})\b`)
 // parse time in ISO8601 format, return time, timezone offset and success flag, turn "Z" into "+00:00"
 func ParseISO8601(s string) (t time.Time, tz string, success bool) {
 	layout := "2006-01-02T15:04-07:00"
-	if strings.HasSuffix(s, "Z") {
-		s = strings.TrimSuffix(s, "Z") + "+00:00"
-	}
+	s = strings.ReplaceAll(s, "Z", "+00:00")
 	t, err := time.Parse(layout, s)
 	if err != nil {
 		return t, "", false
